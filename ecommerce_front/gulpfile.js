@@ -58,7 +58,7 @@ gulp.task('build-css', () => {
 
 gulp.task('build-js', () => {
     return gulp
-            .src(path.sassSrc.concat('**/*.js'))
+            .src(path.jsSrc.concat('**/*.js'))
             .pipe(plumber({errorHandler: onError}))
             .pipe(changed(path.buildDir.concat('/js')))
             .pipe(gulp.dest(path.buildDir.concat('/js')))
@@ -72,7 +72,7 @@ gulp.task('build', ['build-html', 'build-css', 'build-js'], () => {
 gulp.task('watch', () => {
     gulp.watch('src/views/**/*.ejs', ['build-html'])
     gulp.watch('public/scss/**', ['build-css'])
-    gulp.watch('public/js/**', ['js'])
+    gulp.watch('public/js/**', ['build-js'])
 })
 
 const env = process.env.NODE_ENV || 'development'
